@@ -1,0 +1,23 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+      {
+         "type": "gradle",
+         "id": "/Users/thomasgingerelli/Desktop/Code/ProjectEbuildProjectE",
+         "script": "build",
+         "description": "Assembles and tests this project.",
+         "group": "build",
+         "project": "ProjectE",
+         "buildFile": "/Users/thomasgingerelli/Desktop/Code/ProjectE/build.gradle",
+         "rootProject": "ProjectE",
+         "projectFolder": "/Users/thomasgingerelli/Desktop/Code/ProjectE",
+         "workspaceFolder": "/Users/thomasgingerelli/Desktop/Code/ProjectE",
+         "args": "",
+         "javaDebug": false,
+         "problemMatcher": [
+            "$gradle"
+         ],
+         "label": "gradle: build"
+      }
+   ]
+}
