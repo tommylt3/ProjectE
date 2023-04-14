@@ -79,6 +79,10 @@ public final class WorldTransmutations {
 		registerDefault(Blocks.NETHERRACK, Blocks.CRIMSON_NYLIUM, Blocks.WARPED_NYLIUM);
 		registerDefault(Blocks.CRIMSON_NYLIUM, Blocks.WARPED_NYLIUM, Blocks.NETHERRACK);
 		registerDefault(Blocks.WARPED_NYLIUM, Blocks.CRIMSON_NYLIUM, Blocks.NETHERRACK);
+      registerBackAndForth(Blocks.BROWN_MUSHROOM_BLOCK, Blocks.RED_MUSHROOM_BLOCK);
+      registerBackAndForth(Blocks.RED_MUSHROOM_BLOCK, Blocks.BROWN_MUSHROOM_BLOCK);
+      registerBackAndForth(Blocks.GLOWSTONE, Blocks.MAGMA_BLOCK);
+      registerBackAndForth(Blocks.MAGMA_BLOCK, Blocks.GLOWSTONE);
 		registerBackAndForthAllStates(Blocks.CRIMSON_STEM, Blocks.WARPED_STEM);
 		registerBackAndForthAllStates(Blocks.STRIPPED_CRIMSON_STEM, Blocks.STRIPPED_WARPED_STEM);
 		registerBackAndForth(Blocks.CRIMSON_HYPHAE, Blocks.WARPED_HYPHAE);
