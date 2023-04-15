@@ -629,7 +629,7 @@
       "#forge:crops/nether_wart": 24,
       "minecraft:apple": 128,
       "minecraft:pumpkin": 144,
-      "minecraft:honey_bottle": 48,
+      "minecraft:honey_bottle": 32,
       "minecraft:porkchop": 64,
       "minecraft:beef": 64,
       "minecraft:chicken": 64,
