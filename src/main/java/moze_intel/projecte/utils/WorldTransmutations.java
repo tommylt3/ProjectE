@@ -23,8 +23,7 @@ public final class WorldTransmutations {
 	private static List<WorldTransmutationEntry> ENTRIES = Collections.emptyList();
 
 	public static void init() {
-		registerBackAndForth(Blocks.WATER, Blocks.ICE);
-		registerBackAndForth(Blocks.LAVA, Blocks.OBSIDIAN);
+		registerBackAndForthAllStates(Blocks.WATER, Blocks.LAVA);
 		registerConsecutivePairsAllStates(Blocks.OAK_LOG, Blocks.BIRCH_LOG, Blocks.SPRUCE_LOG, Blocks.JUNGLE_LOG, Blocks.ACACIA_LOG, Blocks.DARK_OAK_LOG);
 		registerConsecutivePairsAllStates(Blocks.STRIPPED_OAK_LOG, Blocks.STRIPPED_BIRCH_LOG, Blocks.STRIPPED_SPRUCE_LOG, Blocks.STRIPPED_JUNGLE_LOG,
 				Blocks.STRIPPED_ACACIA_LOG, Blocks.STRIPPED_DARK_OAK_LOG);
@@ -99,6 +98,7 @@ public final class WorldTransmutations {
       registerBackAndForthAllStates(Blocks.SOUL_TORCH, Blocks.TORCH);
       registerBackAndForthAllStates(Blocks.FIRE, Blocks.SOUL_FIRE);
       registerBackAndForthAllStates(Blocks.SOUL_FIRE, Blocks.FIRE);
+      registerConsecutivePairsAllStates(Blocks.ICE,Blocks.PACKED_ICE, Blocks.BLUE_ICE);
 
       // Ores Family
       registerBackAndForthAllStates(Blocks.RAW_IRON_BLOCK, Blocks.IRON_BLOCK);
