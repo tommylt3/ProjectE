@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.level.LevelAccessor;
 
 public interface InterdictionTorchEntityBlock extends PEEntityBlock<InterdictionTorchBlockEntity> {
 
@@ -30,16 +31,12 @@ public interface InterdictionTorchEntityBlock extends PEEntityBlock<Interdiction
 
 		public InterdictionTorch(Properties props) {
 			super(props, ParticleTypes.SOUL_FIRE_FLAME);
-            
 		}
-
-        @Override
-        public void onPlace(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
-            if (!isMoving && state.getBlock() != newState.getBlock()) {
-                defaultBlockState().updateNeighbourShapes(level, pos, 3);
-            }
-            super.onPlace(state, level, pos, newState, isMoving);
+        
+        public void updateShape(@NotNull BlockState pState, @NotNull Direction pFacing, @NotNull BlockState pFacingState, @NotNull LevelAccessor pLevel, @NotNull BlockPos pCurrentPos, @NotNull BlockPos pFacingPos) {
+            super.updateShape(pState,pFacing,pFacingState,pLevel,pCurrentPos,pFacingPos);
         }
+
         
 		@Override
 		@Deprecated
