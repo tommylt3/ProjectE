@@ -33,11 +33,6 @@ public interface InterdictionTorchEntityBlock extends PEEntityBlock<Interdiction
 			super(props, ParticleTypes.SOUL_FIRE_FLAME);
 		}
         
-        public BlockState updateShape(@NotNull BlockState pState, @NotNull LevelAccessor pLevel, @NotNull BlockPos pCurrentPos) {
-            return super.updateFromNeighbourShapes(pState, pLevel, pCurrentPos);
-        }
-
-        
 		@Override
 		@Deprecated
 		public boolean triggerEvent(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, int id, int param) {

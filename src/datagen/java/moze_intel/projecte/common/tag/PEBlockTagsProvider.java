@@ -67,6 +67,11 @@ public class PEBlockTagsProvider extends BlockTagsProvider {
 				PEBlocks.RED_MATTER.getBlock(),
 				PEBlocks.RED_MATTER_FURNACE.getBlock()
 		);
+        
+        // Allow interdiction torches to connect to walls.
+		tag(BlockTags.WALL_POST_OVERRIDE).add(
+            PEBlocks.INTERDICTION_TORCH.getBlock()
+        );
 
 		tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
 				PEBlocks.ALCHEMICAL_CHEST.getBlock(),
