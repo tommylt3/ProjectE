@@ -33,8 +33,8 @@ public interface InterdictionTorchEntityBlock extends PEEntityBlock<Interdiction
 			super(props, ParticleTypes.SOUL_FIRE_FLAME);
 		}
         
-        public void updateShape(@NotNull BlockState pState, @NotNull Direction pFacing, @NotNull BlockState pFacingState, @NotNull LevelAccessor pLevel, @NotNull BlockPos pCurrentPos, @NotNull BlockPos pFacingPos) {
-            super.updateShape(pState,pFacing,pFacingState,pLevel,pCurrentPos,pFacingPos);
+        public BlockState updateShape(@NotNull BlockState pState, @NotNull Direction pFacing, @NotNull BlockState pFacingState, @NotNull LevelAccessor pLevel, @NotNull BlockPos pCurrentPos, @NotNull BlockPos pFacingPos) {
+            return super.updateShape(pState,pFacing,pFacingState,pLevel,pCurrentPos,pFacingPos);
         }
 
         
