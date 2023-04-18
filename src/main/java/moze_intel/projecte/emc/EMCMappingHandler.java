@@ -155,7 +155,6 @@ public final class EMCMappingHandler {
 				PECore.LOGGER.warn("Could not add EMC value for {}, item does not exist!", normStackItem.getResourceLocation());
 			}
 		}
-
 		fireEmcRemapEvent();
 	}
 

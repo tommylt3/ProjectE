@@ -85,7 +85,8 @@ public final class WorldTransmutations {
       registerBackAndForthAllStates(Blocks.RED_MUSHROOM_BLOCK, Blocks.BROWN_MUSHROOM_BLOCK);
       registerBackAndForthAllStates(Blocks.SPONGE, Blocks.WET_SPONGE);
       registerConsecutivePairsAllStates(Blocks.GLOWSTONE, Blocks.MAGMA_BLOCK, Blocks.SHROOMLIGHT);
-      registerBackAndForthAllStates(Blocks.HONEY_BLOCK, Blocks.SLIME_BLOCK);registerBackAndForthAllStates(Blocks.RAW_IRON_BLOCK, Blocks.IRON_BLOCK);
+      registerBackAndForthAllStates(Blocks.HONEY_BLOCK, Blocks.SLIME_BLOCK);
+      registerBackAndForthAllStates(Blocks.RAW_IRON_BLOCK, Blocks.IRON_BLOCK);
       registerBackAndForthAllStates(Blocks.PUMPKIN, Blocks.CARVED_PUMPKIN);
       registerBackAndForthAllStates(Blocks.CARVED_PUMPKIN, Blocks.PUMPKIN);
 
