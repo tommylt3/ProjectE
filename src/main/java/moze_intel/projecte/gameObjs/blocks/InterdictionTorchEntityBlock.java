@@ -12,6 +12,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.state.StateDefinition.Builder;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.level.LevelAccessor;
+
 public interface InterdictionTorchEntityBlock extends PEEntityBlock<InterdictionTorchBlockEntity> {
 
 	@Nullable
@@ -25,7 +32,7 @@ public interface InterdictionTorchEntityBlock extends PEEntityBlock<Interdiction
 		public InterdictionTorch(Properties props) {
 			super(props, ParticleTypes.SOUL_FIRE_FLAME);
 		}
-
+        
 		@Override
 		@Deprecated
 		public boolean triggerEvent(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, int id, int param) {
@@ -47,4 +54,5 @@ public interface InterdictionTorchEntityBlock extends PEEntityBlock<Interdiction
 			return triggerBlockEntityEvent(state, level, pos, id, param);
 		}
 	}
+
 }
