@@ -51,6 +51,21 @@ public class PEBlockTagsProvider extends BlockTagsProvider {
 				PEBlocks.MOBIUS_FUEL.getBlock(),
 				PEBlocks.AETERNALIS_FUEL.getBlock()
 		);
+        
+        // Interdiction Torch Changes to functionality
+		tag(BlockTags.WALL_POST_OVERRIDE).add(
+                PEBlocks.INTERDICTION_TORCH.getBlock()
+        );
+
+        tag(BlockTags.PIGLIN_REPELLENTS).add(
+                PEBlocks.INTERDICTION_TORCH.getBlock()
+        );
+        
+        tag(BlockTags.HOGLIN_REPELLENTS).add(
+                PEBlocks.INTERDICTION_TORCH.getBlock()
+        );
+        
+        
 		addImmuneBlocks(BlockTags.DRAGON_IMMUNE);
 		addImmuneBlocks(BlockTags.WITHER_IMMUNE);
 
@@ -68,11 +83,7 @@ public class PEBlockTagsProvider extends BlockTagsProvider {
 				PEBlocks.RED_MATTER_FURNACE.getBlock()
 		);
         
-        // Allow interdiction torches to connect to walls.
-		tag(BlockTags.WALL_POST_OVERRIDE).add(
-            PEBlocks.INTERDICTION_TORCH.getBlock()
-        );
-
+        
 		tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
 				PEBlocks.ALCHEMICAL_CHEST.getBlock(),
 				PEBlocks.ALCHEMICAL_COAL.getBlock(),
