@@ -52,6 +52,7 @@ public class PEBlockTagsProvider extends BlockTagsProvider {
 				PEBlocks.AETERNALIS_FUEL.getBlock()
 		);
         
+        
         // Interdiction Torch Changes to functionality
 		tag(BlockTags.WALL_POST_OVERRIDE).add(
                 PEBlocks.INTERDICTION_TORCH.getBlock()
