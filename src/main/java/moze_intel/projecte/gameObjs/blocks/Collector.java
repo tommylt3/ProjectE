@@ -26,51 +26,102 @@ import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Represents a collector block that can generate EMC by pulling in items or fluids from its input face.
+ * The collector's tier determines its maximum EMC storage capacity and transfer rate.
+ * This block also has an inventory slot for upgrading items that increase its efficiency.
+ * Implements the {@link PEEntityBlock} interface with a {@link CollectorMK1BlockEntity} block entity.
+ */
 public class Collector extends BlockDirection implements PEEntityBlock<CollectorMK1BlockEntity> {
 
-	private final EnumCollectorTier tier;
+    /**
+     * The tier of this collector, which determines its maximum EMC storage capacity and transfer rate.
+     */
+    private final EnumCollectorTier tier;
 
-	public Collector(EnumCollectorTier tier, Properties props) {
-		super(props);
-		this.tier = tier;
-	}
+    /**
+     * Constructs a new collector block with the specified tier and block properties.
+     * @param tier the collector's tier, which determines its maximum EMC storage capacity and transfer rate.
+     * @param props the block properties for this block.
+     */
+    public Collector(EnumCollectorTier tier, Properties props) {
+        super(props);
+        this.tier = tier;
+    }
 
-	public EnumCollectorTier getTier() {
-		return tier;
-	}
+    /**
+     * Returns the tier of this collector, which determines its maximum EMC storage capacity and transfer rate.
+     * @return the collector's tier.
+     */
+    public EnumCollectorTier getTier() {
+        return tier;
+    }
 
-	@NotNull
-	@Override
-	@Deprecated
-	public InteractionResult use(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand,
-			@NotNull BlockHitResult hit) {
-		if (level.isClientSide) {
-			return InteractionResult.SUCCESS;
-		}
-		CollectorMK1BlockEntity collector = WorldHelper.getBlockEntity(CollectorMK1BlockEntity.class, level, pos, true);
-		if (collector != null) {
-			NetworkHooks.openGui((ServerPlayer) player, collector, pos);
-		}
-		return InteractionResult.CONSUME;
-	}
+    /**
+     * Called when a player interacts with this block.
+     * Opens the GUI for the collector's block entity if the player is a server player.
+     * @param state the block state.
+     * @param level the world level.
+     * @param pos the block position.
+     * @param player the player interacting with the block.
+     * @param hand the player's interaction hand.
+     * @param hit the block hit result.
+     * @return {@link InteractionResult#SUCCESS} if this is the client side, {@link InteractionResult#CONSUME} otherwise.
+     */
+    @NotNull
+    @Override
+    @Deprecated
+    public InteractionResult use(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand,
+                                 @NotNull BlockHitResult hit) {
+        if (level.isClientSide) {
+            return InteractionResult.SUCCESS;
+        }
+        CollectorMK1BlockEntity collector = WorldHelper.getBlockEntity(CollectorMK1BlockEntity.class, level, pos, true);
+        if (collector != null) {
+            NetworkHooks.openGui((ServerPlayer) player, collector, pos);
+        }
+        return InteractionResult.CONSUME;
+    }
 
-	@Nullable
-	@Override
-	@Deprecated
-	public MenuProvider getMenuProvider(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos) {
-		return WorldHelper.getBlockEntity(CollectorMK1BlockEntity.class, level, pos, true);
-	}
+    /**
+     * Gets the menu provider for the GUI of the collector's block entity.
+     * @param state the block state.
+     * @param level the world level.
+     * @param pos the block position.
+     * @return the block entity cast as a {@link MenuProvider}.
+     */
+    @Nullable
+    @Override
+    @Deprecated
+    public MenuProvider getMenuProvider(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos) {
+        return WorldHelper.getBlockEntity(CollectorMK1BlockEntity.class, level, pos, true);
+    }
 
-	@Nullable
-	@Override
-	public BlockEntityTypeRegistryObject<? extends CollectorMK1BlockEntity> getType() {
-		return switch (tier) {
-			case MK1 -> PEBlockEntityTypes.COLLECTOR;
-			case MK2 -> PEBlockEntityTypes.COLLECTOR_MK2;
-			case MK3 -> PEBlockEntityTypes.COLLECTOR_MK3;
-		};
-	}
+    /**
+     * Gets the block entity type for the collector's block entity based on its tier.
+     * @return the {@link BlockEntityTypeRegistryObject} for the collector's block entity based on its tier.
+     */
+    @Nullable
+    @Override
+    public BlockEntityTypeRegistryObject<? extends CollectorMK1BlockEntity> getType() {
+        return switch (tier) {
+            case MK1 -> PEBlockEntityTypes.COLLECTOR;
+            case MK2 -> PEBlockEntityTypes.COLLECTOR_MK2;
+            case MK3 -> PEBlockEntityTypes.COLLECTOR_MK3;
+        };
+    }
 
+    /**
+	 * This method overrides the triggerEvent method from the Block class to handle events triggered on this block.
+	 * It is marked as deprecated and should not be used directly.
+	 *
+	 * @param state the state of the block that triggered the event
+	 * @param level the level in which the block resides
+	 * @param pos   the position of the block that triggered the event
+	 * @param id    the ID of the event that was triggered
+	 * @param param the parameter of the event that was triggered
+	 * @return true if the event was handled successfully, false otherwise
+	 */
 	@Override
 	@Deprecated
 	public boolean triggerEvent(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, int id, int param) {
@@ -78,12 +129,30 @@ public class Collector extends BlockDirection implements PEEntityBlock<Collector
 		return triggerBlockEntityEvent(state, level, pos, id, param);
 	}
 
+    /**
+	 * This method overrides the hasAnalogOutputSignal method from the Block class to indicate that this block
+	 * produces a redstone signal.
+	 * It is marked as deprecated and should not be used directly.
+	 *
+	 * @param state the state of the block
+	 * @return true to indicate that this block has an analog output signal
+	 */
 	@Override
 	@Deprecated
 	public boolean hasAnalogOutputSignal(@NotNull BlockState state) {
 		return true;
 	}
 
+    /**
+	 * This method overrides the getAnalogOutputSignal method from the Block class to provide the strength of the
+	 * redstone signal produced by this block.
+	 * It is marked as deprecated and should not be used directly.
+	 *
+	 * @param state the state of the block
+	 * @param level the level in which the block resides
+	 * @param pos   the position of the block
+	 * @return the strength of the redstone signal produced by this block
+	 */
 	@Override
 	@Deprecated
 	public int getAnalogOutputSignal(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos) {
@@ -109,6 +178,19 @@ public class Collector extends BlockDirection implements PEEntityBlock<Collector
 		return MathUtils.scaleToRedstone(collector.getStoredEmc(), collector.getMaximumEmc());
 	}
 
+    
+    /**
+	 * This method overrides the getAnalogOutputSignal method from the Block class to provide the strength of the
+	 * redstone signal produced by this block.
+	 * It is marked as deprecated and should not be used directly.
+	 *
+	 * @param state    the state of the block
+	 * @param level    the level in which the block resides
+	 * @param pos      the position of the block
+     * @param newState the new removed state of the block
+     * @param isMoving the bool state of movement of the block
+	 * @return the strength of the redstone signal produced by this block
+	 */
 	@Override
 	@Deprecated
 	public void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean isMoving) {
