@@ -230,7 +230,7 @@ public class AlchemicalChest extends BlockDirection implements SimpleWaterlogged
      * Overrides the getFluidState from the super Block class that gets the state of the fluid in the block
      * It is marked as deprecated and should not be used directly.
      * @param state  the state of the block that triggered the event
-     * @return
+     * @return fluid state of the block
      */
 	@NotNull
 	@Override

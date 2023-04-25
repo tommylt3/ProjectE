@@ -36,6 +36,9 @@ import org.jetbrains.annotations.Nullable;
 
 public class TransmutationStone extends DirectionalBlock implements SimpleWaterloggedBlock {
 
+    /**
+     * Defines the voxel shape for the block in all possible positions
+     */
 	private static final VoxelShape UP_SHAPE = Block.box(0, 0, 0, 16, 4, 16);
 	private static final VoxelShape DOWN_SHAPE = Block.box(0, 12, 0, 16, 16, 16);
 	private static final VoxelShape NORTH_SHAPE = Block.box(0, 0, 12, 16, 16, 16);
@@ -48,18 +51,40 @@ public class TransmutationStone extends DirectionalBlock implements SimpleWaterl
 		this.registerDefaultState(getStateDefinition().any().setValue(FACING, Direction.UP).setValue(BlockStateProperties.WATERLOGGED, false));
 	}
 
+    /**
+     * Overrides the inherited createBlockStateDefinition from the Block Class
+     * @param props the properties of the StateDefinition.Builder from the Block class
+     */
 	@Override
 	protected void createBlockStateDefinition(@NotNull StateDefinition.Builder<Block, BlockState> props) {
 		super.createBlockStateDefinition(props);
 		props.add(FACING, BlockStateProperties.WATERLOGGED);
 	}
 
+    /**
+     * Override from the inherited Block class for pathing the block
+     * It is marked as deprecated and should not be used directly.
+     * @param state the state of the block
+     * @param level the level of the block on the z axis
+     * @param pos   the x and y values of the block
+     * @param type  the type of the block
+     * @return returns false automatically because its not a pathable block
+     */
 	@Override
 	@Deprecated
 	public boolean isPathfindable(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull PathComputationType type) {
 		return false;
 	}
 
+    /**
+     * Override from inherited block class to use the custom shape of this block
+     * It is marked as deprecated and should not be used directly.
+     * @param state the state of the block
+     * @param level the z level of the block
+     * @param pos   the x and y of the block
+     * @param ctx   the collision context of the block 
+     * @return returns the predefined SHAPE global variable in the direction it's facing
+     */
 	@NotNull
 	@Override
 	@Deprecated
@@ -75,6 +100,18 @@ public class TransmutationStone extends DirectionalBlock implements SimpleWaterl
 		};
 	}
 
+    /**
+     * Called when a player interacts with this block.
+     * Opens the GUI for the Pedesal's block entity if the player is a server player.
+     * Deprecated so do not use
+     * @param state  the block state.
+     * @param level  the world level.
+     * @param pos    the block position.
+     * @param player the player interacting with the block.
+     * @param hand   the player's interaction hand.
+     * @param rtr    the block hit result.
+     * @return {@link InteractionResult#SUCCESS} if this is the client side, {@link InteractionResult#CONSUME} otherwise.
+     */
 	@NotNull
 	@Override
 	@Deprecated
@@ -93,6 +130,12 @@ public class TransmutationStone extends DirectionalBlock implements SimpleWaterl
 		return state == null ? null : state.setValue(FACING, context.getClickedFace()).setValue(BlockStateProperties.WATERLOGGED, context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER);
 	}
 
+    /**
+     * Overrides the getFluidState from the super Block class that gets the state of the fluid in the block
+     * It is marked as deprecated and should not be used directly.
+     * @param state  the state of the block that triggered the event
+     * @return Fluidstate of the block
+     */
 	@NotNull
 	@Override
 	@Deprecated
@@ -100,6 +143,18 @@ public class TransmutationStone extends DirectionalBlock implements SimpleWaterl
 		return state.getValue(BlockStateProperties.WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
 	}
 
+    /**
+     * Overrides the inherited UpdateShape method from the class Block and uses it to change the state of the blocks shape
+     * It is marked as deprecated and should not be used directly.
+     * 
+     * @param state       the state of the block
+     * @param facing      the direction the block is facing
+     * @param facingState the state of the side of the block in the direction it's facing
+     * @param level       the world level of the block on the z axis
+     * @param currentPos  the current x and y position of the block
+     * @param facingPos   the position the block is facing
+     * @return returns the updateShape class from the super with tweaked parameters
+     */
 	@NotNull
 	@Override
 	@Deprecated
@@ -111,6 +166,12 @@ public class TransmutationStone extends DirectionalBlock implements SimpleWaterl
 		return super.updateShape(state, facing, facingState, level, currentPos, facingPos);
 	}
 
+    /** 
+     * Rotates the block model and state when called
+     * @param state the state of the block
+     * @param rot   the rotation state of the block when called
+     * @return the state of the block
+     */
 	@NotNull
 	@Override
 	@Deprecated
@@ -118,6 +179,12 @@ public class TransmutationStone extends DirectionalBlock implements SimpleWaterl
 		return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
 	}
 
+    /** 
+     * Sets the block to a mirrored state when changed
+     * @param state    the state of the block
+     * @param mirrorIn the mirror state of the block when called
+     * @return the state of the block
+     */
 	@NotNull
 	@Override
 	@Deprecated
