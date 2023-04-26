@@ -161,6 +161,7 @@ public class PELangProvider extends BaseLanguageProvider {
 		add(PELang.COMMAND_INVALID_ITEM, "Error: The item or tag \"%s\" was not found!");
 		add(PELang.COMMAND_NO_ITEM, "Please give an item or tag to change");
 		add(PELang.COMMAND_REMOVE_SUCCESS, "Removed EMC value for %s.");
+      add(PELang.COMMAND_TRANSMUTATION_SET_SUCCESS, "Transmutation set succesfully");
 		add(PELang.COMMAND_RESET_SUCCESS, "Reset EMC value for %s.");
 		add(PELang.COMMAND_SET_SUCCESS, "Set EMC value for %s to %s!");
 		add(PELang.RELOAD_NOTICE, "Restart or use \"/reload\" when all changes are complete.");

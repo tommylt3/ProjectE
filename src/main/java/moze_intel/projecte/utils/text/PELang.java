@@ -25,6 +25,7 @@ public enum PELang implements ILangEntry {
 	COMMAND_INVALID_ITEM("command", "emc.invalid_item"),
 	COMMAND_NO_ITEM("command", "emc.no_item"),
 	COMMAND_REMOVE_SUCCESS("command", "remove.success"),
+   COMMAND_TRANSMUTATION_SET_SUCCESS("command", "transmutation_set.success"),
 	COMMAND_RESET_SUCCESS("command", "reset.success"),
 	COMMAND_SET_SUCCESS("command", "set.success"),
 	RELOAD_NOTICE("command", "reload.notice"),
