@@ -41,23 +41,49 @@ public class AlchemicalChest extends BlockDirection implements SimpleWaterlogged
 
 	private static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 14.0D, 15.0D);
 
+    /**
+     * Constructs a basic Alchemical Chest with the specified properties
+     * @param props the block properties for this block
+     */
 	public AlchemicalChest(Properties props) {
 		super(props);
 		this.registerDefaultState(getStateDefinition().any().setValue(FACING, Direction.NORTH).setValue(BlockStateProperties.WATERLOGGED, false));
 	}
 
+    /**
+     * Overrides the inherited createBlockStateDefinition from the Block Class
+     * @param props the properties of the StateDefinition.Builder from the Block class
+     */
 	@Override
 	protected void createBlockStateDefinition(@NotNull StateDefinition.Builder<Block, BlockState> props) {
 		super.createBlockStateDefinition(props);
 		props.add(BlockStateProperties.WATERLOGGED);
 	}
 
+    /**
+     * Override from the inherited Block class for pathing the block
+     * It is marked as deprecated and should not be used directly.
+     * @param state the state of the block
+     * @param level the level of the block on the z axis
+     * @param pos   the x and y values of the block
+     * @param type  the type of the block
+     * @return returns false automatically because its not a pathable block
+     */
 	@Override
 	@Deprecated
 	public boolean isPathfindable(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull PathComputationType type) {
 		return false;
 	}
 
+    /**
+     * Override from inherited block class to use the custom shape of this block
+     * It is marked as deprecated and should not be used directly.
+     * @param state the state of the block
+     * @param level the z level of the block
+     * @param pos   the x and y of the block
+     * @param ctx   the collision context of the block 
+     * @return returns the predefined SHAPE global variable 
+     */
 	@NotNull
 	@Override
 	@Deprecated
@@ -65,6 +91,12 @@ public class AlchemicalChest extends BlockDirection implements SimpleWaterlogged
 		return SHAPE;
 	}
 
+    /**
+     * The renders the shape of the given custom block
+     * It is marked as deprecated and should not be used directly.
+     * @param state the state of the block that triggered the event
+     * @return returns the shape to be rendered 
+     */
 	@NotNull
 	@Override
 	@Deprecated
@@ -72,6 +104,18 @@ public class AlchemicalChest extends BlockDirection implements SimpleWaterlogged
 		return RenderShape.ENTITYBLOCK_ANIMATED;
 	}
 
+    /**
+     * Override from inherited Block class 
+     * It is marked as deprecated and should not be used directly.
+     * 
+     * @param state  the state of the block that triggered the event
+     * @param level  the world level of the block
+     * @param pos    the x and y position of the block
+     * @param player the player that triggered the event
+     * @param hand   the had that was used to trigger the event 
+     * @param rtr    result of the player hitting the block
+     * @return returns the interaction result after it's consumption
+     */
 	@NotNull
 	@Override
 	@Deprecated
@@ -89,12 +133,29 @@ public class AlchemicalChest extends BlockDirection implements SimpleWaterlogged
 		return InteractionResult.CONSUME;
 	}
 
+    
+    
+    /**
+     * Overrides the getType function from the inherited Block Class
+     * @return returns the entity type from PEBlockEntityTypes
+     */
 	@Nullable
 	@Override
 	public BlockEntityTypeRegistryObject<? extends EmcChestBlockEntity> getType() {
 		return PEBlockEntityTypes.ALCHEMICAL_CHEST;
 	}
 
+    /**
+     *  This method overrides the triggerEvent method from the Block class to handle events triggered on this block.
+     * It is marked as deprecated and should not be used directly.
+     * 
+     * @param state the state of the block that triggered the event
+	 * @param level the level in which the block resides
+	 * @param pos   the position of the block that triggered the event
+	 * @param id    the ID of the event that was triggered
+	 * @param param the parameter of the event that was triggered
+	 * @return true if the event was handled successfully, false otherwise
+     */
 	@Override
 	@Deprecated
 	public boolean triggerEvent(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, int id, int param) {
@@ -102,6 +163,13 @@ public class AlchemicalChest extends BlockDirection implements SimpleWaterlogged
 		return triggerBlockEntityEvent(state, level, pos, id, param);
 	}
 
+    /**
+     * 
+     * @param state  the state of the block
+	 * @param level  the level in which the block resides
+	 * @param pos    the position of the block
+     * @param random random variable from java Random
+     */
 	@Override
 	@Deprecated
 	public void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull Random random) {
@@ -111,12 +179,30 @@ public class AlchemicalChest extends BlockDirection implements SimpleWaterlogged
 		}
 	}
 
+    /**
+	 * This method overrides the hasAnalogOutputSignal method from the Block class to indicate that this block
+	 * produces a redstone signal.
+	 * It is marked as deprecated and should not be used directly.
+	 *
+	 * @param state the state of the block
+	 * @return true to indicate that this block has an analog output signal
+	 */
 	@Override
 	@Deprecated
 	public boolean hasAnalogOutputSignal(@NotNull BlockState state) {
 		return true;
 	}
 
+    /**
+	 * This method overrides the getAnalogOutputSignal method from the Block class to provide the strength of the
+	 * redstone signal produced by this block.
+	 * It is marked as deprecated and should not be used directly.
+	 *
+	 * @param state the state of the block
+	 * @param level the level in which the block resides
+	 * @param pos   the position of the block
+	 * @return the strength of the redstone signal produced by this block
+	 */
 	@Override
 	@Deprecated
 	public int getAnalogOutputSignal(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos) {
@@ -127,12 +213,25 @@ public class AlchemicalChest extends BlockDirection implements SimpleWaterlogged
 		return 0;
 	}
 
+    /**
+     * This method overrides the getStateForPlacement from the inherited Block class that gets the state of the block
+     * when placed
+     * 
+     * @param context the given context of the placed block
+     * @return returns the getStateForPlacement from the super Block class with the given parameters
+     */
 	@NotNull
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
 		return super.getStateForPlacement(context).setValue(BlockStateProperties.WATERLOGGED, context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER);
 	}
 
+    /**
+     * Overrides the getFluidState from the super Block class that gets the state of the fluid in the block
+     * It is marked as deprecated and should not be used directly.
+     * @param state  the state of the block that triggered the event
+     * @return fluid state of the block
+     */
 	@NotNull
 	@Override
 	@Deprecated
@@ -140,6 +239,18 @@ public class AlchemicalChest extends BlockDirection implements SimpleWaterlogged
 		return state.getValue(BlockStateProperties.WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
 	}
 
+    /**
+     * Overrides the inherited UpdateShape method from the class Block and uses it to change the state of the blocks shape
+     * It is marked as deprecated and should not be used directly.
+     * 
+     * @param state       the state of the block
+     * @param facing      the direction the block is facing
+     * @param facingState the state of the side of the block in the direction it's facing
+     * @param level       the world level of the block on the z axis
+     * @param currentPos  the current x and y position of the block
+     * @param facingPos   the position the block is facing
+     * @return returns the updateShape class from the super with tweaked parameters
+     */
 	@NotNull
 	@Override
 	@Deprecated

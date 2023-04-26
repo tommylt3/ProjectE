@@ -53,6 +53,7 @@ import moze_intel.projecte.network.commands.DumpMissingEmc;
 import moze_intel.projecte.network.commands.RemoveEmcCMD;
 import moze_intel.projecte.network.commands.ResetEmcCMD;
 import moze_intel.projecte.network.commands.SetEmcCMD;
+import moze_intel.projecte.network.commands.SetNewTransmutation;;
 import moze_intel.projecte.network.commands.ShowBagCMD;
 import moze_intel.projecte.network.commands.argument.ColorArgument;
 import moze_intel.projecte.network.commands.argument.NSSItemArgument;
@@ -367,7 +368,8 @@ public class PECore {
 				.then(RemoveEmcCMD.register())
 				.then(ResetEmcCMD.register())
 				.then(SetEmcCMD.register())
-				.then(ShowBagCMD.register());
+				.then(ShowBagCMD.register())
+            .then(SetNewTransmutation.register());
 		event.getDispatcher().register(root);
 	}
 

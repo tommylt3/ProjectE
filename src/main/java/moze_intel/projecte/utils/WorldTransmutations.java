@@ -3,6 +3,7 @@ package moze_intel.projecte.utils;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map.Entry;
@@ -27,10 +28,10 @@ public final class WorldTransmutations {
 		registerConsecutivePairsAllStates(Blocks.OAK_LOG, Blocks.BIRCH_LOG, Blocks.SPRUCE_LOG, Blocks.JUNGLE_LOG, Blocks.ACACIA_LOG, Blocks.DARK_OAK_LOG);
 		registerConsecutivePairsAllStates(Blocks.STRIPPED_OAK_LOG, Blocks.STRIPPED_BIRCH_LOG, Blocks.STRIPPED_SPRUCE_LOG, Blocks.STRIPPED_JUNGLE_LOG,
 				Blocks.STRIPPED_ACACIA_LOG, Blocks.STRIPPED_DARK_OAK_LOG);
-		registerConsecutivePairs(Blocks.OAK_WOOD, Blocks.BIRCH_WOOD, Blocks.SPRUCE_WOOD, Blocks.JUNGLE_WOOD, Blocks.ACACIA_WOOD, Blocks.DARK_OAK_WOOD);
-		registerConsecutivePairs(Blocks.STRIPPED_OAK_WOOD, Blocks.STRIPPED_BIRCH_WOOD, Blocks.STRIPPED_SPRUCE_WOOD, Blocks.STRIPPED_JUNGLE_WOOD,
+		registerConsecutivePairsAllStates(Blocks.OAK_WOOD, Blocks.BIRCH_WOOD, Blocks.SPRUCE_WOOD, Blocks.JUNGLE_WOOD, Blocks.ACACIA_WOOD, Blocks.DARK_OAK_WOOD);
+		registerConsecutivePairsAllStates(Blocks.STRIPPED_OAK_WOOD, Blocks.STRIPPED_BIRCH_WOOD, Blocks.STRIPPED_SPRUCE_WOOD, Blocks.STRIPPED_JUNGLE_WOOD,
 				Blocks.STRIPPED_ACACIA_WOOD, Blocks.STRIPPED_DARK_OAK_WOOD);
-		registerConsecutivePairs(Blocks.OAK_LEAVES, Blocks.BIRCH_LEAVES, Blocks.SPRUCE_LEAVES, Blocks.JUNGLE_LEAVES, Blocks.ACACIA_LEAVES, Blocks.DARK_OAK_LEAVES);
+		registerConsecutivePairsAllStates(Blocks.OAK_LEAVES, Blocks.BIRCH_LEAVES, Blocks.SPRUCE_LEAVES, Blocks.JUNGLE_LEAVES, Blocks.ACACIA_LEAVES, Blocks.DARK_OAK_LEAVES);
 		registerConsecutivePairs(Blocks.OAK_SAPLING, Blocks.BIRCH_SAPLING, Blocks.SPRUCE_SAPLING, Blocks.JUNGLE_SAPLING, Blocks.ACACIA_SAPLING, Blocks.DARK_OAK_SAPLING);
 		registerConsecutivePairs(Blocks.OAK_PLANKS, Blocks.BIRCH_PLANKS, Blocks.SPRUCE_PLANKS, Blocks.JUNGLE_PLANKS, Blocks.ACACIA_PLANKS, Blocks.DARK_OAK_PLANKS);
 		registerConsecutivePairsAllStates(Blocks.OAK_SLAB, Blocks.BIRCH_SLAB, Blocks.SPRUCE_SLAB, Blocks.JUNGLE_SLAB, Blocks.ACACIA_SLAB, Blocks.DARK_OAK_SLAB);
@@ -86,10 +87,10 @@ public final class WorldTransmutations {
       registerBackAndForthAllStates(Blocks.SPONGE, Blocks.WET_SPONGE);
       registerConsecutivePairsAllStates(Blocks.GLOWSTONE, Blocks.MAGMA_BLOCK, Blocks.SHROOMLIGHT);
       registerBackAndForthAllStates(Blocks.HONEY_BLOCK, Blocks.SLIME_BLOCK);
-      registerBackAndForthAllStates(Blocks.RAW_IRON_BLOCK, Blocks.IRON_BLOCK);
-      registerBackAndForthAllStates(Blocks.PUMPKIN, Blocks.CARVED_PUMPKIN);
-      registerBackAndForthAllStates(Blocks.CARVED_PUMPKIN, Blocks.PUMPKIN);
-
+      
+      registerDefault(Blocks.PUMPKIN, Blocks.CARVED_PUMPKIN, Blocks.CARVED_PUMPKIN);
+      registerDefault(Blocks.CARVED_PUMPKIN, Blocks.PUMPKIN, Blocks.CARVED_PUMPKIN);
+      
       // Light Family
       registerBackAndForthAllStates(Blocks.LANTERN, Blocks.SOUL_LANTERN);
       registerBackAndForthAllStates(Blocks.SOUL_LANTERN, Blocks.LANTERN);
@@ -198,10 +199,12 @@ public final class WorldTransmutations {
       registerConsecutivePairsAllStates(Blocks.RED_BED, Blocks.BLUE_BED, Blocks.PURPLE_BED, Blocks.BLACK_BED, Blocks.BROWN_BED, Blocks.CYAN_BED, Blocks.GREEN_BED, Blocks.GRAY_BED, Blocks.LIGHT_BLUE_BED, Blocks.LIGHT_GRAY_BED, Blocks.LIME_BED, Blocks.MAGENTA_BED, Blocks.ORANGE_BED, Blocks.PINK_BED,Blocks.WHITE_BED, Blocks.YELLOW_BED);
       registerConsecutivePairsAllStates(Blocks.RED_CANDLE_CAKE, Blocks.BLUE_CANDLE_CAKE, Blocks.PURPLE_CANDLE_CAKE, Blocks.BLACK_CANDLE_CAKE, Blocks.BROWN_CANDLE_CAKE, Blocks.CYAN_CANDLE_CAKE, Blocks.GREEN_CANDLE_CAKE, Blocks.GRAY_CANDLE_CAKE, Blocks.LIGHT_BLUE_CANDLE_CAKE, Blocks.LIGHT_GRAY_CANDLE_CAKE, Blocks.LIME_CANDLE_CAKE, Blocks.MAGENTA_CANDLE_CAKE, Blocks.ORANGE_CANDLE_CAKE, Blocks.PINK_CANDLE_CAKE,Blocks.WHITE_CANDLE_CAKE, Blocks.YELLOW_CANDLE_CAKE);
       registerConsecutivePairsAllStates(Blocks.SHULKER_BOX, Blocks.RED_SHULKER_BOX, Blocks.BLUE_SHULKER_BOX, Blocks.PURPLE_SHULKER_BOX, Blocks.BLACK_SHULKER_BOX, Blocks.BROWN_SHULKER_BOX, Blocks.CYAN_SHULKER_BOX, Blocks.GREEN_SHULKER_BOX, Blocks.GRAY_SHULKER_BOX, Blocks.LIGHT_BLUE_SHULKER_BOX, Blocks.LIGHT_GRAY_SHULKER_BOX, Blocks.LIME_SHULKER_BOX, Blocks.MAGENTA_SHULKER_BOX, Blocks.ORANGE_SHULKER_BOX, Blocks.PINK_SHULKER_BOX,Blocks.WHITE_SHULKER_BOX, Blocks.YELLOW_SHULKER_BOX);
-
-      // Deep Slate
-      
 	}
+
+   public void commandsSetTransmutation(Blocks... blocks){
+      ArrayList<Blocks> listOfBlocks = new ArrayList<>(Arrays.asList(blocks));
+      // registerConsecutivePairsAllStates(listOfBlocks.toArray(new Blocks[0]));
+   }
 
 	@Nullable
 	public static BlockState getWorldTransmutation(BlockState current, boolean isSneaking) {
