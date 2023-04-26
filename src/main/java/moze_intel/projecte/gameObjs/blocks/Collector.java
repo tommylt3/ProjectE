@@ -180,8 +180,7 @@ public class Collector extends BlockDirection implements PEEntityBlock<Collector
 
     
     /**
-	 * This method overrides the getAnalogOutputSignal method from the Block class to provide the strength of the
-	 * redstone signal produced by this block.
+	 * This method overrides onRemove to let the game know what happens when the block is removed
 	 * It is marked as deprecated and should not be used directly.
 	 *
 	 * @param state    the state of the block
@@ -189,7 +188,6 @@ public class Collector extends BlockDirection implements PEEntityBlock<Collector
 	 * @param pos      the position of the block
      * @param newState the new removed state of the block
      * @param isMoving the bool state of movement of the block
-	 * @return the strength of the redstone signal produced by this block
 	 */
 	@Override
 	@Deprecated

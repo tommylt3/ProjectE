@@ -19,6 +19,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
@@ -71,6 +72,11 @@ public class AlchemicalBag extends ItemPE {
 			}
 		}
 		return ItemStack.EMPTY;
+	}
+
+	@Override
+	public boolean canFitInsideContainerItems() {
+		return false;
 	}
 
 	private class ContainerProvider implements MenuProvider {
